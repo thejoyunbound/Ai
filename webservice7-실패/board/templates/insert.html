@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <form action="/board/insert/" method="post">
+            {% csrf_token %} 
+            제목<br>           
+            <input type="text" name="title" style="width:600px;"> <br>
+            내 용<br>
+            <textarea name="text" style="width:600px;height:200px"></textarea>
+            <input type="hidden" name="writer" value="{{ writer }}">
+            <br><input type="submit" value="게시글등록">
+        </form>
+    </body>
+</html>

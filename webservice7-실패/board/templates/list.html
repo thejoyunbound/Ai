@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="font-size:xx-small"> {{user_name}} 님 환영합니다 </p>
+    <form action="/board/list/" method="get">
+      <select name="condition">
+        <option value="title">제목</option>
+        <option value="text">내용</option>
+      </select>
+      <input type="text" name="search">
+      <input type="hidden" name="user_name" value="{{user_name}}">
+      <input type="submit" value="게시글검색">
+    </form>
+    <hr>
+    <table border="1" style="border: solid; font-size:xx-small">
+        <th>작성자</th>
+        <th>제목</th>
+        <th>조회수</th>
+        {% for r in result %}
+        <tr>
+            <td>{{r.writer}}</td>
+            <td><a href="/board/detail/?id={{r.id}&user_name={user_name}}">{{r.title}}</a></td>
+            <td>{{r.cnt}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/board/insert/?writer={{user_name}}">
+        <input type="button" value="게시글등록">
+    </a>
+</body>
+</html>
